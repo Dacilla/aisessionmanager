@@ -1,0 +1,11 @@
+[Unit]
+Description=AI Session Pinger - keeps 5h rolling windows alive
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ai-pinger.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-pinger

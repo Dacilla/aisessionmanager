@@ -1,0 +1,12 @@
+[Unit]
+Description=AI Session Pinger Timer
+Requires=ai-pinger.service
+
+[Timer]
+OnCalendar=Mon..Thu *-*-* 08:00:00
+OnCalendar=Mon..Thu *-*-* 13:00:00
+Persistent=true
+RandomizedDelaySec=30
+
+[Install]
+WantedBy=timers.target
