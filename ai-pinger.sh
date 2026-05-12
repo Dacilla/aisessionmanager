@@ -34,7 +34,7 @@ ping_claude() {
 ping_codex() {
     if command -v codex &>/dev/null; then
         log "OpenAI Codex: pinging..."
-        if timeout "$TIMEOUT_SEC" codex exec --ephemeral "Hi" >/dev/null 2>&1; then
+        if timeout "$TIMEOUT_SEC" codex exec --ephemeral --skip-git-repo-check "Hi" >/dev/null 2>&1; then
             log "OpenAI Codex: OK"
         else
             local rc=$?
