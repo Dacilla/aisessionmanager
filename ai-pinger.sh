@@ -32,22 +32,24 @@ ping_claude() {
 }
 
 ping_codex() {
-    local cmd=""
     if command -v codex &>/dev/null; then
-        cmd="codex"
+        log "OpenAI Codex: pinging..."
+        if timeout "$TIMEOUT_SEC" codex exec --ephemeral "Hi" >/dev/null 2>&1; then
+            log "OpenAI Codex: OK"
+        else
+            local rc=$?
+            log "OpenAI Codex: FAILED (exit code $rc)"
+        fi
     elif command -v openai &>/dev/null && openai --help 2>/dev/null | grep -qi codex; then
-        cmd="openai codex"
+        log "OpenAI Codex: pinging (via openai)..."
+        if timeout "$TIMEOUT_SEC" openai codex -p "Hi" >/dev/null 2>&1; then
+            log "OpenAI Codex: OK"
+        else
+            local rc=$?
+            log "OpenAI Codex: FAILED (exit code $rc)"
+        fi
     else
         log "OpenAI Codex: SKIPPED (binary not found)"
-        return
-    fi
-
-    log "OpenAI Codex: pinging ($cmd)..."
-    if timeout "$TIMEOUT_SEC" $cmd -p "Hi" >/dev/null 2>&1; then
-        log "OpenAI Codex: OK"
-    else
-        local rc=$?
-        log "OpenAI Codex: FAILED (exit code $rc)"
     fi
 }
 

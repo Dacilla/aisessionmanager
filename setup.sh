@@ -20,6 +20,7 @@ cp "$SCRIPT_DIR/ai-pinger.timer" /etc/systemd/system/
 
 echo "[3/4] Creating log file..."
 touch /var/log/ai-pinger.log
+chown alex:alex /var/log/ai-pinger.log
 chmod 644 /var/log/ai-pinger.log
 
 echo "[4/4] Enabling and starting timer..."

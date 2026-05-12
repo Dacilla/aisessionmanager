@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-A systemd timer that pings Claude Code and OpenAI Codex CLI at 8 AM and 1 PM (Mon-Thu) to keep 5-hour session windows from expiring mid-workday.
+A systemd timer that pings Claude Code and Codex CLI at 8 AM and 1 PM (Mon-Thu) to keep 5-hour session windows from expiring mid-workday. Runs as user `alex` with access to the user's CLI tools and auth credentials.
 
 ## Project structure
 

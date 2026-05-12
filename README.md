@@ -1,10 +1,10 @@
 # AI Session Pinger
 
-Keeps your [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [OpenAI Codex CLI](https://github.com/openai/codex) 5-hour rolling session windows alive throughout your workday.
+Keeps your [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Codex CLI](https://github.com/openai/codex) 5-hour rolling session windows alive throughout your workday.
 
 ## The Problem
 
-Claude Code and OpenAI Codex CLI use a **5-hour rolling window** for their native subscription limits. If you start a session at 9 AM and work straight through, your credits run out at 2 PM — right in the middle of the afternoon, with no refresh until 5 PM when your workday is already over.
+Claude Code and Codex CLI use a **5-hour rolling window** for their subscription limits. If you start a session at 9 AM and work straight through, your credits run out at 2 PM — right in the middle of the afternoon, with no refresh until 5 PM when your workday is already over.
 
 ## The Solution
 
@@ -20,7 +20,7 @@ You get full credit coverage from 9 AM to 5 PM, Monday through Thursday.
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/aisessionmanager.git
+git clone https://github.com/Dacilla/aisessionmanager.git
 cd aisessionmanager
 sudo ./setup.sh
 ```
@@ -35,7 +35,7 @@ The setup script:
 
 - Ubuntu / Debian (any distro with systemd)
 - `claude` CLI installed and authenticated ([Claude Code docs](https://docs.anthropic.com/en/docs/claude-code/overview))
-- `codex` or `openai` CLI installed and authenticated ([Codex CLI docs](https://github.com/openai/codex))
+- `codex` CLI installed and authenticated ([Codex CLI docs](https://github.com/openai/codex))
 
 If a CLI is not installed, the script skips it gracefully and logs the skip.
 
