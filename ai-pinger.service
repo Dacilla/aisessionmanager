@@ -7,6 +7,7 @@ Wants=network-online.target
 Type=oneshot
 User=alex
 Environment=PATH=/home/alex/.local/bin:/home/alex/.nvm/versions/node/v24.6.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EnvironmentFile=-/etc/ai-pinger.env
 ExecStart=/usr/local/bin/ai-pinger.sh
 StandardOutput=journal
 StandardError=journal

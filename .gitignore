@@ -1,0 +1,5 @@
+ai-pinger.env
+.env
+*.swp
+*~
+.DS_Store

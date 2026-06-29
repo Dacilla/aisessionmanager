@@ -29,7 +29,8 @@ The setup script:
 1. Copies `ai-pinger.sh` to `/usr/local/bin/`
 2. Installs the systemd service and timer units
 3. Creates the log file at `/var/log/ai-pinger.log`
-4. Enables and starts the timer
+4. Creates `/etc/ai-pinger.env` (chmod 600) for the failure-notification webhook
+5. Enables and starts the timer
 
 ## Requirements
 
@@ -64,6 +65,26 @@ journalctl -u ai-pinger.service --no-pager -n 10
 | Fri–Sun | — | No pings (weekend) |
 
 `RandomizedDelaySec=30` adds a small jitter so pings don't hit exactly on the minute.
+
+## Failure Notifications (Discord Webhook)
+
+If a ping fails (e.g. expired auth token, network down, CLI broken), the script captures the failing tool's stderr and posts an alert to a Discord webhook. Without this, a silently-failing pinger would let your 5-hour window expire and you'd only notice when the CLI stops working hours later.
+
+**Setup:**
+
+1. Create a Discord webhook in your server: *Channel Settings → Integrations → Webhooks → New Webhook*
+2. Edit `/etc/ai-pinger.env` and paste the URL:
+   ```
+   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+   ```
+3. Reload systemd to pick up the new env file:
+   ```bash
+   sudo systemctl daemon-reload
+   ```
+
+The env file is mode `600` and only readable by root, so the webhook URL never lives in the git repo or in any world-readable file. Leave `DISCORD_WEBHOOK_URL=` empty to disable notifications.
+
+Notifications include the failing tool, exit code, timestamp, and the first ~1 KB of stderr — usually enough to tell you whether it's an auth failure, a network issue, or a CLI regression.
 
 ## License
 
