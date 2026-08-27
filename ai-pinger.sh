@@ -75,7 +75,7 @@ ping_codex() {
         local err
         err=$(mktemp)
         log "OpenAI Codex: pinging..."
-        if timeout "$TIMEOUT_SEC" codex exec --ephemeral --skip-git-repo-check "Hi" >/dev/null 2>"$err"; then
+        if timeout "$TIMEOUT_SEC" codex exec --skip-git-repo-check "Hi" >/dev/null 2>"$err"; then
             log "OpenAI Codex: OK"
         else
             local rc=$?
